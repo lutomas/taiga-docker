@@ -33,7 +33,7 @@ DATABASES = {
        'NAME': '${POSTGRES_DB_NAME}',
        'USER': '${POSTGRES_USER}',
        'PASSWORD': '${POSTGRES_PASSWORD}',
-       'HOST': '${POSTGRES_PORT_5432_TCP_ADDR}',
+       'HOST': 'localhost',
        'PORT': '5432',
    }
 }
