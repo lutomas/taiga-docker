@@ -1,12 +1,12 @@
-# htdvisser/taiga-back
+# bartoszgadzala/taiga-back
 
 [Taiga](https://taiga.io/) is a project management platform for startups and agile developers & designers who want a simple, beautiful tool that makes work truly enjoyable.
 
-This Docker image can be used for running the Taiga backend. It works together with the [htdvisser/taiga-front-dist](https://registry.hub.docker.com/u/htdvisser/taiga-front-dist/) image.
+This Docker image can be used for running the Taiga backend. It works together with the [bartoszgadzala/taiga-front](https://hub.docker.com/r/bartoszgadzala/taiga-front/) image.
 
-[![GitHub stars](https://img.shields.io/github/stars/htdvisser/taiga-docker.svg?style=flat-square)](https://github.com/htdvisser/taiga-docker)
-[![GitHub forks](https://img.shields.io/github/forks/htdvisser/taiga-docker.svg?style=flat-square)](https://github.com/htdvisser/taiga-docker)
-[![GitHub issues](https://img.shields.io/github/issues/htdvisser/taiga-docker.svg?style=flat-square)](https://github.com/htdvisser/taiga-docker/issues)
+[![GitHub stars](https://img.shields.io/github/stars/bartoszgadzala/taiga-docker.svg?style=flat-square)](https://github.com/htdvisser/taiga-docker)
+[![GitHub forks](https://img.shields.io/github/forks/bartoszgadzala/taiga-docker.svg?style=flat-square)](https://github.com/htdvisser/taiga-docker)
+[![GitHub issues](https://img.shields.io/github/issues/bartoszgadzala/taiga-docker.svg?style=flat-square)](https://github.com/htdvisser/taiga-docker/issues)
 
 ## Running
 
@@ -14,61 +14,6 @@ A [postgres](https://registry.hub.docker.com/_/postgres/) container should be li
 
 ```
 docker run --name taiga_back_container_name --link postgres_container_name:postgres htdvisser/taiga-back
-```
-
-## Docker-compose
-
-For a complete taiga installation (``htdvisser/taiga-back`` and ``htdvisser/taiga-front-dist``) you can use this docker-compose configuration:
-
-```
-data:
-  image: tianon/true
-  volumes:
-    - /var/lib/postgresql/data
-    - /usr/local/taiga/media
-    - /usr/local/taiga/static
-    - /usr/local/taiga/logs
-db:
-  image: postgres
-  environment:
-    POSTGRES_USER: taiga
-    POSTGRES_PASSWORD: password
-  volumes_from:
-    - data
-taigaback:
-  image: htdvisser/taiga-back:stable
-  hostname: dev.example.com
-  environment:
-    SECRET_KEY: examplesecretkey
-    EMAIL_USE_TLS: True
-    EMAIL_HOST: smtp.gmail.com
-    EMAIL_PORT: 587
-    EMAIL_HOST_USER: youremail@gmail.com
-    EMAIL_HOST_PASSWORD: yourpassword
-  links:
-    - db:postgres
-  volumes_from:
-    - data
-taigafront:
-  image: htdvisser/taiga-front-dist:stable
-  hostname: dev.example.com
-  links:
-    - taigaback
-  volumes_from:
-    - data
-  ports:
-    - 0.0.0.0:80:80
-```
-
-## Database Initialization
-
-To initialize the database, use ``docker exec -it taiga-back bash`` and execute the following commands:
-
-```bash
-cd /usr/local/taiga/taiga-back/
-python manage.py loaddata initial_user
-python manage.py loaddata initial_project_templates
-python manage.py loaddata initial_role
 ```
 
 ## Environment
