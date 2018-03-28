@@ -1,3 +1,10 @@
+## Starts
+
+- Checkout
+- `docker-compose -f taiga.yml up`
+
+Should start without any exceptions. (2018-03-28)
+
 ## Docker-compose
 
 For a complete taiga installation (``bartoszgadzala/taiga-back`` and ``bartoszgadzala/taiga-front``) you can use this docker-compose configuration:
