@@ -1,4 +1,4 @@
-FROM python:3.4
+FROM python:3.5
 
 MAINTAINER Hylke Visser <htdvisser@gmail.com>
 
@@ -7,7 +7,7 @@ RUN \
   apt-get update -qq && \
   apt-get install -y netcat && \
   rm -rf /var/lib/apt/lists/* && \
-  pip install circus gunicorn
+  pip install circus 'tornado>=4.1,<5.0' gunicorn
 
 # Install taiga-back
 RUN \
